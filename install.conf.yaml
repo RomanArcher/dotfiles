@@ -1,0 +1,34 @@
+- defaults:
+      link:
+        relink: true
+
+
+- clean: ['~']
+
+- link:
+    ~/.zshrc: zsh/zshrc
+    ~/.tmux.conf: 
+		if: '[ -x `command -v tmux` ]'
+		path: tmux/tmux.conf
+    ~/.vimrc:
+		if: '[ -x `command -v vim`]'
+		path:  vim/vimrc
+    ~/.gvimrc:
+		if: '[ -x `command -v gvim` ]' 
+		path: vim/gvimrc
+    ~/.vim/spell:
+		if: '[ -x `command -v vim`]'
+      	create: true
+      	path: vim/spell
+    ~/.vim/UltiSnips:
+		if: '[ -x `command -v vim`]'
+      	create: true
+      	path: vim/UltiSnips
+    ~/.i3/config:
+		if: '[ -x `command -v i3`]'
+      	path: i3/config
+
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [cp -r fonts/* /usr/share/fonts/TTF/]
